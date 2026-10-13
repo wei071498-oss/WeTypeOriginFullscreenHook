@@ -1,0 +1,52 @@
+name: Android CI-构建安装包
+
+在……之上:
+workflow_dispatch:
+
+工作:
+建立:
+姓名: 构建安装包
+连续的：Ubuntu-最新
+
+步骤:
+-姓名: 结帐
+uses: 操作/结帐@v4 作/结帐@v4
+
+姓名姓名: 设置JDK11
+uses: 操作/设置-Java@v4
+和……一起:
+分布: 'temurin'
+java版: '11'
+
+姓名缓存Gradle包: 缓存Gradle包
+uses: 操作/缓存@v4
+和……一起:
+路径: |
+~/.gradle/caches
+~/.gradle/wrapper
+钥匙: ${{runner.os}}-gradle-${{哈希文件('**/*.gradle*', '**/gradle-wrapper.properties') }}
+还原键: |
+姓名{{runner.os姓名-梯级-姓名
+
+      - 姓名: 设置Android SDK
+uses: r0adkll/setup-android@v2
+和……一起:
+api水平: 33
+构建工具: 33.0.2
+组件: 平台工具台工具
+
+姓名姓名: 接受Android SDK许可证
+跑: 是|SDK管理器-许可证|sdkmanager-许可证
+
+姓名姓名: 授予gradlew的执行权限
+跑: chmod+x./gradlew||truhmod+x./gradlew||true
+
+姓名姓名: 生成调试安装包
+跑: ./gradlew组件调试-no-daemon-stacktrace/gradlew组件调试-no-daemon-stacktrace
+
+-姓名: 上传安装包项目
+uses: 操作/上载工件@v4
+和……一起:
+姓名: 安装包
+路径: |
+**/outputs/apk/**/*.apk
