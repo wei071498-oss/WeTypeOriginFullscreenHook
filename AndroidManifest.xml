@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:label="WeType Origin 全面屏 Hook" android:allowBackup="false" android:supportsRtl="true">
+        <meta-data android:name="xposedmodule" android:value="true" />
+        <meta-data android:name="xposeddescription" android:value="为微信输入法尝试启用边缘到边缘窗口布局；实验性适配，需通过 LSPosed 启用。" />
+        <meta-data android:name="xposedminversion" android:value="82" />
+    </application>
+</manifest>
